@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { Header } from './header.es'
+import Header from './header.es'
 
 class MainLayout extends Component  {
     render () {
