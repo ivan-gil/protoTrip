@@ -23,7 +23,7 @@ module.exports = {
     devtool: NODE_ENV === "dev" ? "cheap-inline-module-source-map" : null,
     module: {
     	loaders: [
-    		{ test: /\.es$/, loaders: ['babel?presets[]=es2015'] },
+    		{ test: /\.es$/, loaders: ['babel?presets[]=es2015,presets=react'] },
     		{ test: /\.jsx$/, loaders: ['jsx-loader?insertPragma'] },
     		{ test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
     		{ test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'scss-loader'] },
