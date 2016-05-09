@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import Header from './header.es'
+import React, { Component } from 'react'
+import Header from './header'
 
-class MainLayout extends Component  {
+class MainLayout extends Component {
     render () {
         return (
             <div className="app">
