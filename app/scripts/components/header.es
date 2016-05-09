@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { Nav, Navbar, NavItem } from 'react-bootstrap';
+import React, { Component } from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Nav, Navbar, NavItem } from 'react-bootstrap'
+import RouteNames from '../constants/route_names'
 
 const navbarInstance = (
         <Navbar inverse>
@@ -12,8 +13,12 @@ const navbarInstance = (
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav pullRight>
-                <NavItem eventKey={1} href="#">Link Right</NavItem>
-                <NavItem eventKey={2} href="#">Link Right</NavItem>
+                <LinkContainer to={RouteNames.SIGN_IN}>
+                    <NavItem>Sign in</NavItem>
+                </LinkContainer>
+                <LinkContainer to={RouteNames.SIGN_UP}>
+                    <NavItem>Sign up</NavItem>
+                </LinkContainer>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
