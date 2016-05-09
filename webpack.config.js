@@ -8,7 +8,9 @@ module.exports = {
     		'react',
     		'react-router',
     		'redux',
-    		'react-redux'
+    		'react-redux',
+            'bootstrap'
+
     	]
     },
     output: {
@@ -23,19 +25,53 @@ module.exports = {
     devtool: NODE_ENV === "dev" ? "cheap-inline-module-source-map" : null,
     module: {
     	loaders: [
-    		{ test: /\.es$/, loaders: ['babel?presets[]=es2015,presets=react'] },
-    		{ test: /\.jsx$/, loaders: ['jsx-loader?insertPragma'] },
-    		{ test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
-    		{ test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'scss-loader'] },
-    		{ test: /\.png$/, loaders: ['url-loader?limit=150000'] },
-    		{ test: /\.jpg$/, loaders: ['url-loader?limit=150000'] },
-    		{ test: /\.ttf$/, loaders: ['url-loader?limit=150000'] },
-    		{ test: /\.json$/, loaders: ['json-loader'] },
-    	]
+            { 
+                test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery' },
+    		{ 
+                test: /\.es$/,
+                loaders: ['babel?presets[]=es2015,presets=react'] },
+    		{ 
+                test: /\.jsx$/,
+                loaders: ['jsx-loader?insertPragma'] 
+            },
+    		{ 
+                test: /\.css$/,
+                loaders: ['style-loader', 'css-loader'] 
+            },
+    		{ 
+                test: /\.scss$/,
+                loaders: ['style-loader', 'css-loader', 'scss-loader'] 
+            },
+    		{ 
+                test: /\.png$/,
+                loaders: ['url-loader?limit=150000'] 
+            },
+    		{ 
+                test: /\.jpg$/,
+                loaders: ['url-loader?limit=150000'] 
+            },
+    		{
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
+                loader: 'url?limit=10000&mimetype=application/font-woff'
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
+                loader: 'url?limit=10000&mimetype=application/octet-stream'
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
+                loader: 'file'
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
+                loader: 'url?limit=10000&mimetype=image/svg+xml'
+            },
+            { test: /\.json$/, loaders: ['json-loader'] },
+                ]
     },
     resolve: {
     	root: [path.join(__dirname, 'app/scripts')],
-    	extensions: ['', '.js', 'es', 'css', 'scss'],
+    	extensions: ['', '.js', '.es', '.css', '.scss'],
     	moduleDirectories: ['node_modules']
     },
     plugins: [
