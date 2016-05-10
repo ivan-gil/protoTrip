@@ -11,7 +11,7 @@ class SignIn extends Component{
                         Email
                         </Col>
                         <Col sm={10}>
-                        <FormControl type="email" placeholder="Email" />
+                        <FormControl type="text" placeholder="Nickname" />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="formHorizontalPassword">
