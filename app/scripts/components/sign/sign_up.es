@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, Col, FormControl, Button, ControlLabel, Checkbox } from 'react-bootstrap'
+import { browserHistory } from 'react-router'
+import RouteNames from '../../constants/route_names'
+import Actions from '../../actions/sign_actions'
+import store from  '../../../main'
 
 class SignUp extends Component{
 
@@ -11,6 +15,7 @@ class SignUp extends Component{
         };
         this.handleChangePass = this.handleChangePass.bind(this);
         this.handleChangeRepeatPass = this.handleChangeRepeatPass.bind(this);
+        this.handleChangeUserName = this.handleChangeUserName.bind(this);
     };
 
     static propTypes = { initialPassValue: React.PropTypes.string};
@@ -26,7 +31,12 @@ class SignUp extends Component{
                         Email
                         </Col>
                         <Col sm={10}>
-                        <FormControl type="text" placeholder="Nickname" />
+                        <FormControl
+                            type="text"
+                            placeholder="Nickname"
+                            value={this.state.userName}
+                            onChange={this.handleChangeUserName}
+                        />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="formHorizontalPassword">
@@ -61,7 +71,9 @@ class SignUp extends Component{
                     </FormGroup>
                     <FormGroup>
                         <Col smOffset={2} sm={10}>
-                            <Button type="submit">
+                            <Button
+                                type="submit"
+                                onClick={() => { this.registerUser()}}>
                             Sign Up
                             </Button>
                         </Col>
@@ -71,12 +83,28 @@ class SignUp extends Component{
         );
     };
 
+    registerUser() {
+        store.dispatch({
+            type: Actions.REG_USER_SUCCESS,
+            payload: {
+                username: this.state.userName,
+                password: this.state.passValue,
+            }
+
+        })
+        browserHistory.push(RouteNames.TRIP_CREATOR);
+    };
+
     getValidationState() {
-        if(this.state.passValue === this.state.repeatPassValue) {
+        if(this.state.userName && this.state.passValue && this.state.passValue === this.state.repeatPassValue ) {
             return 'success'
         } else {
             return 'error'
         }
+    };
+
+    handleChangeUserName(e) {
+        this.setState({ userName: e.target.value })
     };
 
     handleChangePass(e) {
@@ -88,5 +116,4 @@ class SignUp extends Component{
     }
 
 }
-
 export default SignUp;

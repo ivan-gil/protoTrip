@@ -7,8 +7,9 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './scripts/reducers/index'
 
-
-let store = createStore(reducer);
+var store = createStore(reducer);
 
 ReactDOM.render(<Provider store={store}>{ Router }</Provider>,
     document.getElementById('proto-trip'));
+
+export default store
