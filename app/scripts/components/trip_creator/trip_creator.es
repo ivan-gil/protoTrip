@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps';
+import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps'
+import { getPlaces } from '../../selectors/places_selector'
+import { connect } from 'react-redux'
+import './style.css'
 
 const coords = {
   lat: 51.5258541,
@@ -28,7 +31,7 @@ class TripCreator extends Component {
 
   render() {
     return (
-      <Gmaps
+      <Gmaps className={"trip-creator"}
         width={'800px'}
         height={'600px'}
         lat={coords.lat}
@@ -58,4 +61,4 @@ class TripCreator extends Component {
 
 }
 
-export default TripCreator
+export default connect(getPlaces)(TripCreator)

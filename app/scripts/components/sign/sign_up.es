@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, Col, FormControl, Button, ControlLabel, Checkbox } from 'react-bootstrap'
-import { browserHistory } from 'react-router'
+import browserHistory from 'react-router/lib/hashHistory'
 import RouteNames from '../../constants/route_names'
 import Actions from '../../actions/sign_actions'
 import store from  '../../../main'
@@ -89,10 +89,11 @@ class SignUp extends Component{
             payload: {
                 username: this.state.userName,
                 password: this.state.passValue,
+                authorized: true
             }
 
         })
-        browserHistory.push(RouteNames.TRIP_CREATOR);
+        browserHistory.push('/TRIP_CREATOR@RouteNames');
     };
 
     getValidationState() {

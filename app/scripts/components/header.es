@@ -8,35 +8,49 @@ import { connect } from 'react-redux'
 
 class Header extends Component {
     render() {
-        return (
-            <Navbar inverse>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <LinkContainer to={this.getUrl()}>
-                            <a href="#">ProtoTrip</a>
-                        </LinkContainer>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                    <Nav pullRight>
-                    <LinkContainer to={RouteNames.SIGN_IN}>
-                        <NavItem>Sign in</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to={RouteNames.SIGN_UP}>
-                        <NavItem>Sign up</NavItem>
-                    </LinkContainer>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-        );
-    }
-
-    getUrl() {
         if(this.props.authorized) {
-            return RouteNames.TRIP_CREATOR
+            return (
+                <Navbar inverse>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <LinkContainer to={RouteNames.TRIP_CREATOR}>
+                                <a href="#">ProtoTrip</a>
+                            </LinkContainer>
+                        </Navbar.Brand>
+                        <Navbar.Toggle />
+                    </Navbar.Header>
+                    <Navbar.Collapse>
+                        <Nav pullRight>
+                        <LinkContainer to={RouteNames.HOME}>
+                            <NavItem>Log off</NavItem>
+                        </LinkContainer>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
+            );
         } else {
-            return '/'
+            return (
+                <Navbar inverse>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <LinkContainer to={'/'}>
+                                <a href="#">ProtoTrip</a>
+                            </LinkContainer>
+                        </Navbar.Brand>
+                        <Navbar.Toggle />
+                    </Navbar.Header>
+                    <Navbar.Collapse>
+                        <Nav pullRight>
+                        <LinkContainer to={RouteNames.SIGN_IN}>
+                            <NavItem>Sign in</NavItem>
+                        </LinkContainer>
+                        <LinkContainer to={RouteNames.SIGN_UP}>
+                            <NavItem>Sign up</NavItem>
+                        </LinkContainer>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
+            );
         }
     }
 };
