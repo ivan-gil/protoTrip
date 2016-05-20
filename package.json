@@ -56,6 +56,7 @@
     "debug": "~2.0.x",
     "express": "~4.10.x",
     "faker": "^2.0.x",
+    "immutable": "^3.8.1",
     "jquery": "^2.2.3",
     "method-override": "^2.3.x",
     "mongoose": "^4.4.x",
