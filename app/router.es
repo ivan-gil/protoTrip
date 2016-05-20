@@ -2,6 +2,7 @@ import React from 'react';
 import { IndexRedirect, Router, Route, IndexRoute, DefaultRoute } from 'react-router'
 import browserHistory from 'react-router/lib/hashHistory'
 import RouteNames from './scripts/constants/route_names'
+import { syncHistoryWithStore } from 'react-router-redux';
 import SignUp from './scripts/components/sign/sign_up'
 import SignIn from './scripts/components/sign/sign_in'
 import PlacesContainer from './scripts/components/trip_creator/places_container'

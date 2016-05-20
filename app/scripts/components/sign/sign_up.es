@@ -4,6 +4,7 @@ import browserHistory from 'react-router/lib/hashHistory'
 import RouteNames from '../../constants/route_names'
 import Actions from '../../actions/sign_actions'
 import store from  '../../../main'
+import { LinkContainer } from 'react-router-bootstrap' 
 
 class SignUp extends Component{
 
@@ -71,11 +72,13 @@ class SignUp extends Component{
                     </FormGroup>
                     <FormGroup>
                         <Col smOffset={2} sm={10}>
-                            <Button
-                                type="submit"
-                                onClick={() => { this.registerUser()}}>
-                            Sign Up
-                            </Button>
+                            <LinkContainer to={'TRIP_CREATOR@RouteNames'}>
+                                <Button
+                                    type="submit"
+                                    onClick={() => { this.registerUser()}}>
+                                Sign Up
+                                </Button>
+                            </LinkContainer>
                         </Col>
                     </FormGroup>
                 </Form>
@@ -84,16 +87,26 @@ class SignUp extends Component{
     };
 
     registerUser() {
-        store.dispatch({
-            type: Actions.REG_USER_SUCCESS,
-            payload: {
-                username: this.state.userName,
-                password: this.state.passValue,
-                authorized: true
-            }
-
+        var self = this;
+        fetch('http://localhost:1337/api/register', {
+            method: 'POST',
+            body: "username=" + self.state.userName + "&password=" + self.state.passValue
         })
-        browserHistory.push('/TRIP_CREATOR@RouteNames');
+        .then(function(response) {
+            return response.blob()
+        })
+        .then(function(response) {
+            store.dispatch({
+                type: Actions.REG_USER_SUCCESS,
+                payload: {
+                    username: self.state.userName,
+                    password: self.state.passValue,
+                    authorized: true
+                }
+
+            })
+        })
+        
     };
 
     getValidationState() {
