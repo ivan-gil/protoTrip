@@ -10,7 +10,6 @@ const initialState = Immutable.Map({
 export function authReducer(state = initialState, action) {
     switch(action.type) {
         case ActionTypes.REG_USER_SUCCESS:
-            state.set('authorized', true);
             return state.merge(action.payload)
         default:
             return state;

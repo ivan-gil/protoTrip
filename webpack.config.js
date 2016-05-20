@@ -19,9 +19,6 @@ module.exports = {
         library: "TRP"
     },
     watch: NODE_ENV === "dev",
-    watchOptions: {
-    	aggregateTimeout: 100
-    },
     devtool: NODE_ENV === "dev" ? "cheap-inline-module-source-map" : null,
     module: {
     	loaders: [

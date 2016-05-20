@@ -1,0 +1,10 @@
+.places_list {
+    display: inline-block;
+    width: 300px;
+    vertical-align: top;
+    margin-left: 40px;
+    
+}
+.trip-creator {
+    display: inline-block;
+}
