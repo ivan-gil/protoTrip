@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps'
-import { getPlaces } from '../../selectors/places_selector'
+import { getActivePlaces } from '../../selectors/places_selector'
 import { connect } from 'react-redux'
 import './style.css'
 
 const coords = {
-  lat: 51.5258541,
-  lng: -0.08040660000006028
+  lat: 53.885775,
+  lng: 27.549549
 };
 
 class TripCreator extends Component {
@@ -30,6 +30,17 @@ class TripCreator extends Component {
   }
 
   render() {
+    const places = this.props.places.map((place, index) => {
+            return (
+                <Marker
+                    lat={place.lat}
+                    lng={place.lng}
+                    draggable={false}
+                    key={index}>
+                        {place.nameCode}
+                </Marker>
+            );
+    });
     return (
       <Gmaps className={"trip-creator"}
         width={'800px'}
@@ -40,25 +51,11 @@ class TripCreator extends Component {
         loadingMessage={'Be happy'}
         params={{v: '3.exp'}}
         onMapCreated={this.onMapCreated}>
-        <Marker
-          lat={coords.lat}
-          lng={coords.lng}
-          draggable={true}
-          onDragEnd={this.onDragEnd} />
-        <InfoWindow
-          lat={coords.lat}
-          lng={coords.lng}
-          content={'Hello, React :)'}
-          onCloseClick={this.onCloseClick} />
-        <Circle
-          lat={coords.lat}
-          lng={coords.lng}
-          radius={500}
-          onClick={this.onClick} />
+       {places}
       </Gmaps>
     );
   }
 
 }
 
-export default connect(getPlaces)(TripCreator)
+export default connect(getActivePlaces)(TripCreator)

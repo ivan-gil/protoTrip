@@ -3,3 +3,9 @@ export function getPlaces(state) {
         places: state.getIn(['placesReducer', 'places'])
     }
 }
+
+export function getActivePlaces(state) {
+    return {
+        places: state.getIn(['placesReducer', 'activePlaces'])
+    }
+}

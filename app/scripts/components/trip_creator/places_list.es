@@ -14,8 +14,14 @@ class PlacesList extends Component {
             return (
                 <ListGroupItem
                     id={place.value}
-                    key={index} onClick={(e) => { this.pushPlace(e) }}>
-                        {place.nameCode}
+                    lat={place.lat}
+                    lng={place.lng}
+                    key={index} onClick={(e) => { 
+                        var id = place.value,
+                            lat = place.lat,
+                            lng = place.lng;
+                        this.pushPlace(e,id,lat,lng) }}>
+                        {place.value}
                 </ListGroupItem>
             );
         });
@@ -44,13 +50,14 @@ class PlacesList extends Component {
             
         ) 
     }
-    pushPlace(e) {
-        if(this) {}
-        e.target.active = e.target.active ? false : true;
+    pushPlace(e, id, lat, lng) {
+        e.target.disable = true;
         store.dispatch({
             type: "ADD_PLACES_TO_ROUTE",
             payload: {
-
+                value: id,
+                lat: lat,
+                lng: lng
             }
         })
     }

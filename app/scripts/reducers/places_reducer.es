@@ -1,35 +1,37 @@
-import ActionTypes from '../actions/sign_actions'
+import ActionTypes from '../actions/places_actions'
 import Immutable from 'immutable'
 
 const initialState = Immutable.Map({
     places: [
         {
-            nameCode: "montreal, quebec",
+            lat: 53.902116,
+            lng: 27.549175,
             value: "Montreal, QBC"
         },
         {
-            nameCode: "toronto, ont",
+            lat: 53.897816,
+            lng: 27.553175,
             value: "Toronto, ONT"
         },
         {
-            nameCode: "chicago, il",
+            lat: 53.892116,
+            lng: 27.557175,
             value: "Chicago"
         },
         {
-            nameCode: "winnipeg, mb",
+            lat: 53.880116,
+            lng: 27.535175,
             value: "Winnipeg"
         },
         {
-            nameCode: "fargo, nd",
+            lat: 53.883116,
+            lng: 27.505175,
             value: "Fargo"
         },
         {
-            nameCode: "calgary, ab",
+            lat: 53.875116,
+            lng: 27.570175,
             value: "Calgary"
-        },
-        {
-            nameCode: "spokane, wa",
-            value: "Spokane"
         }
 
     ],
@@ -38,5 +40,10 @@ const initialState = Immutable.Map({
 });
 
 export function placesReducer(state = initialState, action) {
+    switch(action.type) {
+        case ActionTypes.ADD_PLACES_TO_ROUTE:
+            return state = state.update('activePlaces', activePlaces => activePlaces.concat(action.payload));
+        default:
             return state;
+    }
 }
