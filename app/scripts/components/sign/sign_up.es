@@ -4,7 +4,8 @@ import browserHistory from 'react-router/lib/hashHistory'
 import RouteNames from '../../constants/route_names'
 import Actions from '../../actions/sign_actions'
 import store from  '../../../main'
-import { LinkContainer } from 'react-router-bootstrap' 
+import { LinkContainer } from 'react-router-bootstrap'
+import $ from 'jquery'
 
 class SignUp extends Component{
 
@@ -54,7 +55,7 @@ class SignUp extends Component{
                             />
                         </Col>
                     </FormGroup>
-                    <FormGroup 
+                    <FormGroup
                         controlId="formHorizontalRepPassword"
                         validationState={this.getValidationState()}
                     >
@@ -88,25 +89,37 @@ class SignUp extends Component{
 
     registerUser() {
         var self = this;
-        fetch('http://localhost:1337/api/register', {
-            method: 'POST',
-            body: "username=" + self.state.userName + "&password=" + self.state.passValue
-        })
-        .then(function(response) {
-            return response.blob()
-        })
-        .then(function(response) {
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost:1337/register",
+          "method": "POST",
+          "headers": {
+            "cache-control": "no-cache",
+            "postman-token": "252b5ca9-6076-c4f3-54af-784a9acc0b96",
+            "content-type": "application/x-www-form-urlencoded"
+          },
+          "data": {
+            "username": self.state.userName,
+            "password": self.state.passValue
+          }
+        }
+
+        $.ajax(settings).done(function(response) {
+          console.log(response);
+          if(response.status === "Failed") {
+            console.log("Error creating a user");
+          }
             store.dispatch({
                 type: Actions.REG_USER_SUCCESS,
                 payload: {
-                    username: self.state.userName,
+                    username: self.state.userNasme,
                     password: self.state.passValue,
                     authorized: true
                 }
 
             })
         })
-        
     };
 
     getValidationState() {
