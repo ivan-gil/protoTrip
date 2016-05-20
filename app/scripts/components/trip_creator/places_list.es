@@ -17,10 +17,8 @@ class PlacesList extends Component {
                     lat={place.lat}
                     lng={place.lng}
                     key={index} onClick={(e) => { 
-                        var id = place.value,
-                            lat = place.lat,
-                            lng = place.lng;
-                        this.pushPlace(e,id,lat,lng) }}>
+                        var id = place.value;
+                        this.pushPlace(e,id) }}>
                         {place.value}
                 </ListGroupItem>
             );
@@ -44,8 +42,6 @@ class PlacesList extends Component {
                   <option value="San Francisco, CA">San Francisco, CA</option>
                   <option value="Los Angeles, CA">Los Angeles, CA</option>
                 </select>
-                <br/>
-                  <input type="submit" id="submit"/>
             </div>
             
         ) 
@@ -56,8 +52,6 @@ class PlacesList extends Component {
             type: "ADD_PLACES_TO_ROUTE",
             payload: {
                 value: id,
-                lat: lat,
-                lng: lng
             }
         })
     }

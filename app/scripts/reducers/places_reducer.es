@@ -4,34 +4,19 @@ import Immutable from 'immutable'
 const initialState = Immutable.Map({
     places: [
         {
-            lat: 53.902116,
-            lng: 27.549175,
-            value: "Montreal, QBC"
+            value: "montreal, quebec"
         },
         {
-            lat: 53.897816,
-            lng: 27.553175,
-            value: "Toronto, ONT"
+            value: "toronto, ont"
         },
         {
-            lat: 53.892116,
-            lng: 27.557175,
-            value: "Chicago"
+            value: "chicago, il"
         },
         {
-            lat: 53.880116,
-            lng: 27.535175,
-            value: "Winnipeg"
+            value: "winnipeg, mb"
         },
         {
-            lat: 53.883116,
-            lng: 27.505175,
-            value: "Fargo"
-        },
-        {
-            lat: 53.875116,
-            lng: 27.570175,
-            value: "Calgary"
+            value: "fargo, nd"
         }
 
     ],
