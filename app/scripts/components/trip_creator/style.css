@@ -8,3 +8,13 @@
 .trip-creator {
     display: inline-block;
 }
+
+#map {
+    display: inline-block;
+    width: 500px;
+    height: 400px;
+
+}
+#cont {
+    display: inline-block;  
+}
