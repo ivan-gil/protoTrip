@@ -22,11 +22,20 @@ router.post('/register/', function(req, res) {
         password: req.body.password
     });
 
+    console.log(req);
+
     user.save(function(err, user) {
         if(!err) {
             log.info("New user - %s:%s", user.username, user.password);
+            return res.json({
+      				status: 'OK',
+      			  user: user
+      			});
         }else {
             return log.error(err);
+            return res.json({
+      				status: 'Failed'
+      			});
         }
     });
 })
