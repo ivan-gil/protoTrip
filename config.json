@@ -18,6 +18,18 @@
             "name": "Android API v1",
             "clientId": "android",
             "clientSecret": "SomeRandomCharsAndNumbers"
-        }
+        },
+        "locations": [{
+                "name": "Minsk",
+                "lat": 1,
+                "lon": 2,
+                "description": "Just city"
+            },{
+                "name": "Moskva",
+                "lat": 4,
+                "lon": 5,
+                "description": "Just another city"
+            }
+        ]
     }
 }
