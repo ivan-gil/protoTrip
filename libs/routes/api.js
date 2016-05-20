@@ -17,12 +17,11 @@ router.get('/', function(req, res){
 
 router.post('/register/', function(req, res) {
   console.log("register");
+  console.log(req.body);
 	var user = new User({
         username: req.body.username,
         password: req.body.password
     });
-
-    console.log(req);
 
     user.save(function(err, user) {
         if(!err) {
@@ -31,8 +30,8 @@ router.post('/register/', function(req, res) {
       				status: 'OK',
       			  user: user
       			});
-        }else {
-            return log.error(err);
+        } else {
+            log.error(err);
             return res.json({
       				status: 'Failed'
       			});
