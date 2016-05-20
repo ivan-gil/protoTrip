@@ -4,19 +4,34 @@ import Immutable from 'immutable'
 const initialState = Immutable.Map({
     places: [
         {
-            value: "montreal, quebec"
+            value: "paris, france"
         },
         {
-            value: "toronto, ont"
+            value: "Brest Region, Belarus"
         },
         {
-            value: "chicago, il"
+            value: "Minsk, Minskaja voblasć"
         },
         {
-            value: "winnipeg, mb"
+            value: "Vitebsk, Vitebsk Region"
         },
         {
-            value: "fargo, nd"
+            value: "Mogilev Province, Belarus"
+        },
+        {
+            value: "Grodno Region, Belarus"
+        },
+        {
+            value: "Gomel, Homiel Province"
+        },
+        {
+            value: "Vilnius, Vilniaus apskritis"
+        },
+        {
+            value: "Warszawa, Polska"
+        },
+        {
+            value: "Amsterdam, Nederland"
         }
 
     ],
@@ -28,6 +43,8 @@ export function placesReducer(state = initialState, action) {
     switch(action.type) {
         case ActionTypes.ADD_PLACES_TO_ROUTE:
             return state = state.update('activePlaces', activePlaces => activePlaces.concat(action.payload));
+        case "CLEAR":
+            return state = state.update('activePlaces', activePlaces => []);
         default:
             return state;
     }

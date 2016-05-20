@@ -26,26 +26,77 @@ class PlacesList extends Component {
         return (
             <div className={"places_list"}>
                 <b>Start:</b>
-                <select id="start">
-                  <option value="Halifax, NS">Halifax, NS</option>
-                  <option value="Boston, MA">Boston, MA</option>
-                  <option value="New York, NY">New York, NY</option>
-                  <option value="Miami, FL">Miami, FL</option>
+                <b>End:</b>
+                <select id="end">
+                <option value="Brest Region, Belarus">brest</option>
+                <option value="paris, france">paris</option>
+                <option value="Minsk, Minskaja voblasć">minsk</option>
+                  <option value="Vitebsk, Vitebsk Region">vitebsk</option>
+                  <option value="Mogilev Province, Belarus">mogilev</option>
+                  <option value="Grodno Region, Belarus">grodno</option>
+                  <option value="Vilnius, Vilniaus apskritis">vilnius</option>
+                  <option value="Warszawa, Polska">warszawa</option>
+                  <option value="Tallinna linn, Eesti">tallinna</option>
+                  <option value="Amsterdam, Nederland">grodno</option>
+                </select>
+                <select id="end">
+                <option value="Brest Region, Belarus">brest</option>
+                <option value="paris, france">paris</option>
+                <option value="Minsk, Minskaja voblasć">minsk</option>
+                  <option value="Vitebsk, Vitebsk Region">vitebsk</option>
+                  <option value="Mogilev Province, Belarus">mogilev</option>
+                  <option value="Grodno Region, Belarus">grodno</option>
+                  <option value="Vilnius, Vilniaus apskritis">vilnius</option>
+                  <option value="Warszawa, Polska">warszawa</option>
+                  <option value="Tallinna linn, Eesti">tallinna</option>
+                  <option value="Amsterdam, Nederland">grodno</option>
                 </select>
                 <ListGroup>
                     {places}
                 </ListGroup>
-                <b>End:</b>
-                <select id="end">
-                  <option value="Vancouver, BC">Vancouver, BC</option>
-                  <option value="Seattle, WA">Seattle, WA</option>
-                  <option value="San Francisco, CA">San Francisco, CA</option>
-                  <option value="Los Angeles, CA">Los Angeles, CA</option>
-                </select>
+                
             </div>
             
         ) 
     }
+    calculateAndDisplayRoute(directionsService, directionsDisplay) {
+          var waypts = [];
+          var checkboxArray = this.props.places;
+          for (var i = 0; i < checkboxArray.length; i++) {
+            if (checkboxArray[i]) {
+              waypts.push({
+                location: checkboxArray[i].value,
+                stopover: true
+              });
+            }
+          }
+
+          directionsService.route({
+            origin: document.getElementById('start').value,
+            destination: document.getElementById('end').value,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+          }, function(response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+              directionsDisplay.setDirections(response);
+              var route = response.routes[0];
+              var summaryPanel = document.getElementById('directions-panel');
+              summaryPanel.innerHTML = '';
+              // For each route, display summary information.
+              for (var i = 0; i < route.legs.length; i++) {
+                var routeSegment = i + 1;
+                summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                    '</b><br>';
+                summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+              }
+            } else {
+              window.alert('Directions request failed due to ' + status);
+            }
+      })
+  }
     pushPlace(e, id, lat, lng) {
         e.target.disable = true;
         store.dispatch({

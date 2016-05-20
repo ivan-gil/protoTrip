@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Gmaps, Marker, InfoWindow, Circle} from 'react-gmaps'
 import { getActivePlaces } from '../../selectors/places_selector'
 import { connect } from 'react-redux'
+import store from '../../../main'
 import './style.css'
 
 const coords = {
@@ -84,11 +85,19 @@ class TripCreator extends Component {
             }
       })
   }
+
+  clearPlaces() {
+    store.dispatch({
+      type: "CLEAR"
+      })
+  }
+
   render() {
     return (
       <div id='cont'>
       <div id="map"></div>
       <input type="submit" id="submit"/>
+      <input type="submit" placeholder={"clear"} id="submit1" onClick={() => {this.clearPlaces()}}/>
       </div>
     );
   }
