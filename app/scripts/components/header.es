@@ -4,6 +4,7 @@ import { Nav, Navbar, NavItem } from 'react-bootstrap'
 import RouteNames from '../constants/route_names'
 import { getUserInfo } from '../selectors/sign_selectors.es'
 import { connect } from 'react-redux'
+import './styles.css'
 
 
 class Header extends Component {
